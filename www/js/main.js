@@ -97,7 +97,7 @@ var commands = {
     this.echo(
       OUTPUT_STRING +
         glow("download_CV") +
-        "        - Check out my CV [pdf - 407KB]"
+        "        - Check out my CV [pdf - 172KB]"
     );
     this.echo(" ");
 
@@ -160,9 +160,15 @@ var commands = {
         ". I'm also pretty into fly fishing!"
     );
 
+
     this.echo(" ");
     this.echo(
-      "I am currently working for a content creation app - Over (http://madewithover.com)."
+      "My previous formal work experience includes working on asset management software (Fundamental Software - https://www.fundamental.net), as well as working for a content creation app (Over - https://madewithover.com)."
+    );
+
+    this.echo(" ");
+    this.echo(
+      "I am currently focusing on some personal projects, but please feel free to get in touch with me to discuss any cool opportunities!"
     );
     this.echo(
       "My contact details can be found by typing 'contact', and if you would like to check out my CV, simply type 'download_CV'."
