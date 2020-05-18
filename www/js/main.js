@@ -342,13 +342,7 @@ $(function () {
       };
     }
 
-    var typed_prompt = typed(function(term, message, prompt) {
-      // swap command with prompt
-      term.set_command("");
-      term.set_prompt(message + " ");
-    });
-
-    var typed_message = typed(function(term, message, prompt) {
+  var typed_message = typed(function (term, message, prompt) {
       term.set_command("");
       term.echo(message);
       term.set_prompt(prompt);
@@ -357,16 +351,15 @@ $(function () {
     $("body").terminal(commands, {
       greetings: banner,
       prompt: "> ",
-
       completion: true,
-
       checkArity: false,
+    clear: false,
 
-      onInit: function(term) {
-        typed_message(term, welcomeMessage, 40, function() {});
+    onInit: function (term) {
+      typed_message(term, welcomeMessage, 0, function () {});
       },
 
-      keydown: function(e) {
+    keydown: function (e) {        
         // ctrl-z - Stop Star Wars
         if (e.which == 90 && e.ctrlKey) {
           play = false;
@@ -382,18 +375,18 @@ $(function () {
         }
       },
 
-      onBlur: function() {
-        // prevent loosing focus
-        return false;
+    keypress: function (e, term) {
+      console.log("keypress: " + e.which);
       },
 
-      onClear: function(term) {
-        term.echo(banner);
+    onFocus: function (term) {
+      console.log("terminal has gained focus");
+    },
 
-        play ? term.echo(starWarsMessage + "\n\n") : term.echo(welcomeMessage);
-      }
+    onBlur: function () {
+      console.log("terminal has lost focus");
+    },
     });
-  }
 });
 
 // ---------------------------- STAR WARS
