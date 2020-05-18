@@ -317,32 +317,24 @@ var commands = {
 
 //-----------------------------------------------------------
 
-$(function() {
-  if (
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    )
-  ) {
-    document.write("Mobile site in development. Check back soon!");
-  } else {
+$(function () {
     var isTyping = false;
     function typed(finish_typing) {
-      return function(term, message, delay, finish) {
+    return function (term, message, delay) {
         isTyping = true;
         var prompt = term.get_prompt();
         var c = 0;
         if (message.length > 0) {
           term.set_prompt("");
-          var interval = setInterval(function() {
+        var interval = setInterval(function () {
             term.insert(message[c++]);
             if (c == message.length) {
               clearInterval(interval);
               // execute in next interval
-              setTimeout(function() {
+            setTimeout(function () {
                 // swap command with prompt
                 finish_typing(term, message, prompt);
                 isTyping = false;
-                finish && finish();
               }, delay);
             }
           }, delay);
